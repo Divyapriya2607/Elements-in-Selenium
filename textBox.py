@@ -22,15 +22,30 @@ try:
         time.sleep(5)
         if card_name == "Elements":
             print("Clicked")
-            time.sleep(5)
-            card.find_element(By.XPATH, "//div[@class='card-body']").click()
-            print("Clicked")
+            #time.sleep(5)
+            card.find_element(By.XPATH, "div/div[@class='card-body']").click()
+            #print("Clicked")
             time.sleep(3)
         else:
             print("failed")
-
 except:
     print("Finished")
+# try:
+#     elements = driver.find_elements(By.XPATH, "(//div[@class='left-pannel']//ul)[1]")
+#     print(elements)
+#     print("clicked")
+#     time.sleep(5)
+#     for textBox in elements:
+#         link_textBox = textBox.find_element(By.XPATH, "li/span").text
+#         print(link_textBox)
+#         time.sleep(5)
+#         if link_textBox == "Text Box":
+#             textBox.find_element(By.XPATH, "li[1]").click()
+#             print("clicked1")
+#             time.sleep(4)
+# except:
+#     print("Button clicked")
+
 
 
 
