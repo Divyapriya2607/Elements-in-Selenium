@@ -13,41 +13,30 @@ chromedriver_autoinstaller.install()
 
 driver = webdriver.Chrome(service=Service(), options=chrome_options)
 driver.get("https://demoqa.com/")
-try:
-    cards = driver.find_elements(By.XPATH, "//div[@class='card mt-4 top-card']")
 
+cards = driver.find_elements(By.XPATH, "//div[@class='card mt-4 top-card']")
+try:
     for card in cards:
-        card_name = card.find_element(By.XPATH, "div/div/h5").text
+        card_name = card.find_element(By.XPATH, "//div/div[@class='card-body']/h5").text
         print(card_name)
         time.sleep(5)
         if card_name == "Elements":
-            print("Clicked")
-            #time.sleep(5)
-            card.find_element(By.XPATH, "div/div[@class='card-body']").click()
-            #print("Clicked")
             time.sleep(3)
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            card.find_element(By.XPATH, "//div/div[@class='avatar mx-auto white']").click()
+            time.sleep(3)
+            print("clicked")
+            menu_list = driver.find_elements(By.XPATH, "//div[@class='element-list collapse show']")
+            for item in menu_list:
+                Button_textbox=item.find_element(By.XPATH, "//div[@class='element-list collapse show']/ul/li").text
+                time.sleep(3)
+                if Button_textbox == "Text Box":
+                    time.sleep(3)
+                    item.find_element(By.XPATH, "")
+
+
         else:
-            print("failed")
+            print("Not clicked")
 except:
-    print("Finished")
-# try:
-#     elements = driver.find_elements(By.XPATH, "(//div[@class='left-pannel']//ul)[1]")
-#     print(elements)
-#     print("clicked")
-#     time.sleep(5)
-#     for textBox in elements:
-#         link_textBox = textBox.find_element(By.XPATH, "li/span").text
-#         print(link_textBox)
-#         time.sleep(5)
-#         if link_textBox == "Text Box":
-#             textBox.find_element(By.XPATH, "li[1]").click()
-#             print("clicked1")
-#             time.sleep(4)
-# except:
-#     print("Button clicked")
-
-
-
-
-
+    print("Elements not clicked")
 
