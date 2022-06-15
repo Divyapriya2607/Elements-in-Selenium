@@ -32,7 +32,23 @@ try:
                 time.sleep(3)
                 if Button_textbox == "Text Box":
                     time.sleep(3)
-                    item.find_element(By.XPATH, "")
+                    item.find_element(By.XPATH, "//li[@id='item-0']").click()
+                    print("textbox link clicked")
+                    time.sleep(2)
+                else:
+                    print("textbox not clicked")
+            textbox_username = driver.find_element(By.XPATH, "//label[text()='Full Name']/following::input[@id='userName']")
+            textbox_username.send_keys("Riya")
+            print("username")
+            textbox_email = driver.find_element(By.XPATH, "//label[text()='Email']/following::input[@id='userEmail']")
+            textbox_email.send_keys("riya@gmail.com")
+            print("email")
+            time.sleep(2)
+            textarea_address = driver.find_element(By.XPATH, "//label[text()='Current Address']/following::textarea[@id='currentAddress'")
+            textarea_address.send_keys("watson street")
+            print("address")
+            time.sleep(2)
+
 
 
         else:
