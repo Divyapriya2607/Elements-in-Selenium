@@ -6,6 +6,8 @@ from selenium import webdriver
 #driver = webdriver.chrome(executable_path="")
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--start-maximized")
@@ -43,13 +45,18 @@ try:
             textbox_email = driver.find_element(By.XPATH, "//label[text()='Email']/following::input[@id='userEmail']")
             textbox_email.send_keys("riya@gmail.com")
             print("email")
-            time.sleep(2)
-            textarea_address = driver.find_element(By.XPATH, "//label[text()='Current Address']/following::textarea[@id='currentAddress'")
+            #WebDriverWait(driver, 5).until(
+                #EC.presence_of_element_located((By.XPATH, "//label[text()='Current Address']/following::textarea[@id='currentAddress']")))
+            textarea_address = driver.find_element(By.XPATH, "//label[text()='Current Address']/following::textarea[@id='currentAddress']")
             textarea_address.send_keys("watson street")
             print("address")
             time.sleep(2)
+            button_submit = WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, "//button[@id='submit']")))
+            button_submit.click()
 
-
+            print("submit button clicked")
+            time.sleep(5)
 
         else:
             print("Not clicked")
